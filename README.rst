@@ -60,8 +60,8 @@ precedence over the **image/jpeg** entry when searching for a match.
     >>> mailcap.findmatch(d, 'image/jpeg', filename='test.jpg')
     ('feh test.jpg', {'view': 'feh %s', 'lineno': 0})
 
-Implementation
---------------
+How it works
+------------
 
 The mailcap module exposes two functions, ``findmatch()`` and ``getcaps()``.
 
@@ -98,10 +98,38 @@ Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_
     doing the searching, and the success of any test in the "test="
     field, if present.
     
-Timing
-------
+Benchmark
+---------
 
-TODO
+*Python 3.4.0*
+
+*Ubuntu 14.04 LTS 64bit*
+
+*Intel® Core™ i5-3210M CPU @ 2.50GHz × 4*
+
+*8 GiB RAM*
+
+mailcap.get_caps()
+==================
+
+==================== ============ ============
+                     mailcap      mailcap_fix
+==================== ============ ============
+**trivial_malcap**   0.081881  ms 0.084525 ms
+**extended_mailcap** 17.746289 ms 18.407623 ms
+==================== ============ ============
+
+mailcap.lookup()
+================
+
+Time averaged across all entries in the mailcap dict
+
+==================== =========== ===========
+                     mailcap     mailcap_fix
+==================== =========== ===========
+**trivial_malcap**   0.000996 ms 0.003144 ms
+**extended_mailcap** 0.000798 ms 0.002731 ms
+==================== =========== ===========
 
 .. |python| image:: https://img.shields.io/badge/python-2.6%2C%202.7%2C%2032C%2pypy-blue.svg
     :target: https://pypi.python.org/pypi/mailcap_fix/
