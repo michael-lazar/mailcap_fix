@@ -15,11 +15,10 @@ The python standard library's implementation of
 `mailcap <https://docs.python.org/3.5/library/mailcap.html>`_ is **broken** because
 it does not respect the order in which mailcap entries are defined. Due to an
 oversight in the implementation, wildcard entries are always evaluated last. 
-
 This issue is documented on the bug tracker in
 `14977 <http://bugs.python.org/issue14977>`_.
 
-*mailcap_fix* provides a minimal set of changes in order to fix this issue.
+*mailcap_fix* applies a minimal set of changes in order to fix this issue.
 
 Installation
 ------------
@@ -31,7 +30,7 @@ Installation
 Example
 -------
 
-Consider a mailcap file that contains only the following two lines
+Consider a mailcap file that contains the following two lines
 
 ::
 
@@ -39,15 +38,15 @@ Consider a mailcap file that contains only the following two lines
     image/jpeg; eog %s
 
 Because the **image/*** entry is defined first, it should take
-precedence over the **image/jpeg** entry.
+precedence over the **image/jpeg** entry when searching for a match.
 
 **Before**
 
 .. code-block:: python
 
-    >>> # Incorrectly returns the second entry
     >>> import mailcap
     >>> d = mailcap.getcaps()
+    >>> # Incorrectly returns the second entry
     >>> mailcap.findmatch(d, 'image/jpeg', filename='test.jpg')
     ('eog test.jpg', {'view': 'eog %s'})
 
@@ -57,8 +56,9 @@ precedence over the **image/jpeg** entry.
 
     >>> import mailcap_fix as mailcap
     >>> d = mailcap.getcaps()
+    >>> # Returns the correct wildcard entry
     >>> mailcap.findmatch(d, 'image/jpeg', filename='test.jpg')
-    ('hef test.jpg', {'view': 'feh %s', 'lineno': 0})
+    ('feh test.jpg', {'view': 'feh %s', 'lineno': 0})
 
 Implementation
 --------------
@@ -68,19 +68,19 @@ The mailcap module exposes two functions, ``findmatch()`` and ``getcaps()``.
 ``getcaps()`` adds a new field to each mailcap entry called ``lineno``. The
 line number is persistent when loading from multiple mailcap files. For
 instance, if ``~/mailcap`` is 10 lines long, ``/etc/mailcap`` will apply an
-offset of 10 to its first ``lineno``.
+offset of 10 to its first line number.
 
-``findmatch()`` then uses the field to sort the entries in descending order
+``findmatch()`` then uses the line number to sort the entries in descending order
 when searching for a match. For backwards compatibility, if the ``lineno`` is
-not present, entries will simply not be sorted.
+not present entries will simply not be sorted.
 
 RFC 1524 defines a whitelist of valid field names in mailcap, so the addition
-of ``lineno`` should not conflict with any of the valid options.
+of ``lineno`` should not conflict with any valid mailcap options.
 
 Reference
 ---------
 
-Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_ -
+Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_
 
     Location of Configuration Information
 
