@@ -125,7 +125,7 @@ Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_
 
 .. _extended_mailcap: https://github.com/michael-lazar/mailcap_fix/blob/master/tests/data/extended_mailcap
 
-.. |python| image:: https://img.shields.io/badge/python-2.6%2C%202.7%2C%203%2C%20pypy-blue.svg
+.. |python| image:: https://img.shields.io/badge/python-2.6+%2C%203.0+%2C%20pypy-blue.svg
     :target: https://pypi.python.org/pypi/mailcap_fix/
     :alt: Supported Python versions
 
