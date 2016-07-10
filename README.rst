@@ -2,11 +2,7 @@
 Mailcap Fix
 ===========
 
----------------
-
 |pypi| |python| |travis-ci|
-
----------------
 
 Summary
 -------
