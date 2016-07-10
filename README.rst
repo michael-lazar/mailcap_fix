@@ -131,7 +131,7 @@ Time averaged across all entries in the mailcap dict
 **extended_mailcap** 0.000798 ms 0.002731 ms
 ==================== =========== ===========
 
-.. |python| image:: https://img.shields.io/badge/python-2.6%2C%202.7%2C%2032C%2pypy-blue.svg
+.. |python| image:: https://img.shields.io/badge/python-2.6%2C%202.7%2C%203%2C%20pypy-blue.svg
     :target: https://pypi.python.org/pypi/mailcap_fix/
     :alt: Supported Python versions
 
