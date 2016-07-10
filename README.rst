@@ -52,7 +52,7 @@ wildcard entries last.
 
     >>> import mailcap_fix as mailcap
     >>> d = mailcap.getcaps()
-    >>> # Returns the correct wildcard entry
+    >>> # Correctly returns the wildcard entry
     >>> mailcap.findmatch(d, 'image/jpeg', filename='test.jpg')
     ('feh test.jpg', {'view': 'feh %s', 'lineno': 0})
 
