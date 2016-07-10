@@ -13,34 +13,21 @@ Summary
 
 The python standard library's implementation of
 `mailcap <https://docs.python.org/3.5/library/mailcap.html>`_ is **broken** because
-it does not respect the order in which mailcap entries were defined. Due to an
+it does not respect the order in which mailcap entries are defined. Due to an
 oversight in the implementation, wildcard entries are always evaluated last. 
-*mailcap_fix* provides a minimal set of changes in order to fix this issue.
-
-Reference
----------
 
 This issue is documented on the bug tracker in
 `14977 <http://bugs.python.org/issue14977>`_.
 
-Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_ -
+*mailcap_fix* provides a minimal set of changes in order to fix this issue.
 
-    Location of Configuration Information
+Installation
+------------
 
-    Each user agent must clearly obtain the configuration information
-    from a common location, if the same information is to be used to
-    configure all user agents.  However, individual users should be able
-    to override or augment a site's configuration.  The configuration
-    information should therefore be obtained from a designated set of
-    locations.  The overall configuration will be obtained through the
-    virtual concatenation of several individual configuration files known
-    as mailcap files.  **The configuration information will be obtained
-    from the FIRST matching entry in a mailcap file**, where "matching"
-    depends on both a matching content-type specification, an entry
-    containing sufficient information for the purposes of the application
-    doing the searching, and the success of any test in the "test="
-    field, if present.
+.. code-block:: bash
 
+    $ pip install mailcap_fix
+    
 Example
 -------
 
@@ -90,13 +77,27 @@ not present, entries will simply not be sorted.
 RFC 1524 defines a whitelist of valid field names in mailcap, so the addition
 of ``lineno`` should not conflict with any of the valid options.
 
-Installation
-------------
+Reference
+---------
 
-.. code-block:: bash
+Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_ -
 
-    $ pip install mailcap_fix
+    Location of Configuration Information
 
+    Each user agent must clearly obtain the configuration information
+    from a common location, if the same information is to be used to
+    configure all user agents.  However, individual users should be able
+    to override or augment a site's configuration.  The configuration
+    information should therefore be obtained from a designated set of
+    locations.  The overall configuration will be obtained through the
+    virtual concatenation of several individual configuration files known
+    as mailcap files.  **The configuration information will be obtained
+    from the FIRST matching entry in a mailcap file**, where "matching"
+    depends on both a matching content-type specification, an entry
+    containing sufficient information for the purposes of the application
+    doing the searching, and the success of any test in the "test="
+    field, if present.
+    
 Timing
 ------
 
