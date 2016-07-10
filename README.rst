@@ -67,8 +67,8 @@ The mailcap module exposes two functions, ``findmatch()`` and ``getcaps()``.
 
 ``getcaps()`` adds a new field to each mailcap entry called ``lineno``. The
 line number is persistent when loading from multiple mailcap files. For
-instance, if ``~/mailcap`` is 10 lines long, ``/etc/mailcap`` will apply an
-offset of 10 to its first line number.
+instance, if **~/mailcap** is 10 lines long, **/etc/mailcap** will start
+with line number 10.
 
 ``findmatch()`` then uses the line number to sort the entries in descending order
 when searching for a match. For backwards compatibility, if the ``lineno`` is
