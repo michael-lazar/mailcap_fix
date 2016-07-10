@@ -15,7 +15,7 @@ The python standard library's implementation of
 `mailcap <https://docs.python.org/3.5/library/mailcap.html>`_ is **broken** because
 it does not respect the order in which mailcap entries are defined. Due to an
 oversight in the implementation, wildcard entries are always evaluated last. 
-This issue is documented on the bug tracker in
+This issue is documented on the bug tracker
 `14977 <http://bugs.python.org/issue14977>`_.
 
 *mailcap_fix* applies a minimal set of changes in order to fix this issue.
