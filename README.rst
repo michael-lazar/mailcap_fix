@@ -76,27 +76,6 @@ not present entries will simply not be sorted.
 
 RFC 1524 defines a whitelist of valid field names in mailcap, so the addition
 of ``lineno`` should not conflict with any valid mailcap options.
-
-Reference
----------
-
-Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_
-
-    Location of Configuration Information
-
-    Each user agent must clearly obtain the configuration information
-    from a common location, if the same information is to be used to
-    configure all user agents.  However, individual users should be able
-    to override or augment a site's configuration.  The configuration
-    information should therefore be obtained from a designated set of
-    locations.  The overall configuration will be obtained through the
-    virtual concatenation of several individual configuration files known
-    as mailcap files.  **The configuration information will be obtained
-    from the FIRST matching entry in a mailcap file**, where "matching"
-    depends on both a matching content-type specification, an entry
-    containing sufficient information for the purposes of the application
-    doing the searching, and the success of any test in the "test="
-    field, if present.
     
 Benchmark
 ---------
@@ -125,6 +104,27 @@ trivial_mailcap_     0.000996 ms 0.003144 ms
 extended_mailcap_    0.000798 ms 0.002731 ms
 ==================== =========== ===========
 
+Reference
+---------
+
+Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_
+
+    Location of Configuration Information
+
+    Each user agent must clearly obtain the configuration information
+    from a common location, if the same information is to be used to
+    configure all user agents.  However, individual users should be able
+    to override or augment a site's configuration.  The configuration
+    information should therefore be obtained from a designated set of
+    locations.  The overall configuration will be obtained through the
+    virtual concatenation of several individual configuration files known
+    as mailcap files.  **The configuration information will be obtained
+    from the FIRST matching entry in a mailcap file**, where "matching"
+    depends on both a matching content-type specification, an entry
+    containing sufficient information for the purposes of the application
+    doing the searching, and the success of any test in the "test="
+    field, if present.
+    
 .. _trivial_mailcap: https://github.com/michael-lazar/mailcap_fix/blob/master/tests/data/trivial_mailcap
 
 .. _extended_mailcap: https://github.com/michael-lazar/mailcap_fix/blob/master/tests/data/extended_mailcap
