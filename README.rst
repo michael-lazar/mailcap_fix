@@ -12,9 +12,10 @@ Summary
 -------
 
 The python standard library's implementation of
-`mailcap <https://docs.python.org/3.5/library/mailcap.html>`_ is broken because
-it does not respect the order of entries in mailcap files with wildcard types.
-``mailcap_fix`` applies a minimal set of changes in order to fix this problem.
+`mailcap <https://docs.python.org/3.5/library/mailcap.html>`_ is **broken** because
+it does not respect the order of entries in mailcap files. This is due to an
+oversight where wildcard entries are always evaluated last. *mailcap_fix* applies
+a minimal set of changes in order to fix this issue.
 
 Reference
 ---------
@@ -26,36 +27,38 @@ Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_ -
 
     Location of Configuration Information
 
-       Each user agent must clearly obtain the configuration information
-       from a common location, if the same information is to be used to
-       configure all user agents.  However, individual users should be able
-       to override or augment a site's configuration.  The configuration
-       information should therefore be obtained from a designated set of
-       locations.  The overall configuration will be obtained through the
-       virtual concatenation of several individual configuration files known
-       as mailcap files.  **The configuration information will be obtained
-       from the FIRST matching entry in a mailcap file**, where "matching"
-       depends on both a matching content-type specification, an entry
-       containing sufficient information for the purposes of the application
-       doing the searching, and the success of any test in the "test="
-       field, if present.
+    Each user agent must clearly obtain the configuration information
+    from a common location, if the same information is to be used to
+    configure all user agents.  However, individual users should be able
+    to override or augment a site's configuration.  The configuration
+    information should therefore be obtained from a designated set of
+    locations.  The overall configuration will be obtained through the
+    virtual concatenation of several individual configuration files known
+    as mailcap files.  **The configuration information will be obtained
+    from the FIRST matching entry in a mailcap file**, where "matching"
+    depends on both a matching content-type specification, an entry
+    containing sufficient information for the purposes of the application
+    doing the searching, and the success of any test in the "test="
+    field, if present.
 
 Example
 -------
 
-Consider a mailcap file that contains the following entries
+Consider a mailcap file that contains only the following two lines
 
-..code-block::
+::
 
     image/*; feh %s
     image/jpeg; eog %s
 
-Because the ``image/*`` line is defined first in the file, it should take
-precedence over the ``image/jpeg`` line when searching for valid entries.
+Because the **image/*** entry is defined first, it should take
+precedence over the **image/jpeg** entry.
 
 **Before**
 
-..code-block:: python
+.. code-block:: python
+
+    >>> # Incorrectly returns the second entry
     >>> import mailcap
     >>> d = mailcap.getcaps()
     >>> mailcap.findmatch(d, 'image/jpeg', filename='test.jpg')
@@ -63,7 +66,8 @@ precedence over the ``image/jpeg`` line when searching for valid entries.
 
 **After**
 
-..code-block:: python
+.. code-block:: python
+
     >>> import mailcap_fix as mailcap
     >>> d = mailcap.getcaps()
     >>> mailcap.findmatch(d, 'image/jpeg', filename='test.jpg')
