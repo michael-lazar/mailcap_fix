@@ -105,6 +105,8 @@ Benchmark
 | *Ubuntu 14.04 LTS 64bit*
 | *Intel® Core™ i5-3210M CPU @ 2.50GHz × 4*
 | *8 GiB RAM*
+|
+|
 
 **mailcap.get_caps()**
 
