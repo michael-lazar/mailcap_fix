@@ -32,7 +32,7 @@ Consider a mailcap file that contains the following two lines
 
 Because the **image/*** entry is defined first, it should take
 precedence over the **image/jpeg** entry when searching for a match.
-The expected behavior is defined by `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_.
+This behavior is defined by `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_.
 However, the standard library's implementation will always evaluate
 wildcard entries last.
 
