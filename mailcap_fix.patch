@@ -1,0 +1,76 @@
+--- mailcap_original.py	2016-07-09 22:59:07.819512938 -0700
++++ mailcap.py	2016-07-10 02:34:49.792023245 -0700
+@@ -4,6 +4,22 @@
+ 
+ __all__ = ["getcaps","findmatch"]
+ 
++
++def lineno_gen():
++    lineno = 0
++    while True:
++        yield lineno
++        lineno += 1
++
++
++def lineno_sort_key(entry):
++    # Sort in ascending order, with unspecified entries at the end
++    if 'lineno' in entry:
++        return 0, entry['lineno']
++    else:
++        return 1, 0
++
++
+ # Part 1: top-level interface.
+ 
+ def getcaps():
+@@ -17,13 +33,15 @@
+ 
+     """
+     caps = {}
++
++    lineno = lineno_gen()
+     for mailcap in listmailcapfiles():
+         try:
+             fp = open(mailcap, 'r')
+         except OSError:
+             continue
+         with fp:
+-            morecaps = readmailcapfile(fp)
++            morecaps, lineno = readmailcapfile(fp, lineno)
+         for key, value in morecaps.items():
+             if not key in caps:
+                 caps[key] = value
+@@ -50,7 +68,7 @@
+ 
+ # Part 2: the parser.
+ 
+-def readmailcapfile(fp):
++def readmailcapfile(fp, lineno):
+     """Read a mailcap file and return a dictionary keyed by MIME type.
+ 
+     Each MIME type is mapped to an entry consisting of a list of
+@@ -76,6 +94,7 @@
+         key, fields = parseline(line)
+         if not (key and fields):
+             continue
++        fields['lineno'] = next(lineno)
+         # Normalize the key
+         types = key.split('/')
+         for j in range(len(types)):
+@@ -86,7 +105,7 @@
+             caps[key].append(fields)
+         else:
+             caps[key] = [fields]
+-    return caps
++    return caps, lineno
+ 
+ def parseline(line):
+     """Parse one entry in a mailcap file and return a dictionary.
+@@ -165,6 +184,7 @@
+         entries = entries + caps[MIMEtype]
+     if key is not None:
+         entries = [e for e in entries if key in e]
++    entries = sorted(entries, key=lineno_sort_key)
+     return entries
+ 
+ def subst(field, MIMEtype, filename, plist=[]):
