@@ -11,6 +11,7 @@ def lineno_gen():
         yield lineno
         lineno += 1
 
+
 # Part 1: top-level interface.
 
 def getcaps():
@@ -175,7 +176,7 @@ def lookup(caps, MIMEtype, key=None):
         entries = entries + caps[MIMEtype]
     if key is not None:
         entries = [e for e in entries if key in e]
-
+    entries = sorted(entries, key=lambda x: x.get('lineno'))
     return entries
 
 def subst(field, MIMEtype, filename, plist=[]):
