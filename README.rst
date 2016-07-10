@@ -101,16 +101,12 @@ Relevant section of `RFC 1524 <https://tools.ietf.org/html/rfc1524>`_
 Benchmark
 ---------
 
-*Python 3.4.0*
+| *Python 3.4.0*
+| *Ubuntu 14.04 LTS 64bit*
+| *Intel® Core™ i5-3210M CPU @ 2.50GHz × 4*
+| *8 GiB RAM*
 
-*Ubuntu 14.04 LTS 64bit*
-
-*Intel® Core™ i5-3210M CPU @ 2.50GHz × 4*
-
-*8 GiB RAM*
-
-mailcap.get_caps()
-==================
+**mailcap.get_caps()**
 
 ==================== ============ ============
                      mailcap      mailcap_fix
@@ -119,10 +115,7 @@ mailcap.get_caps()
 **extended_mailcap** 17.746289 ms 18.407623 ms
 ==================== ============ ============
 
-mailcap.lookup()
-================
-
-Time averaged across all entries in the mailcap dict
+**mailcap.lookup()**
 
 ==================== =========== ===========
                      mailcap     mailcap_fix
