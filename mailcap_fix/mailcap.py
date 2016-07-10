@@ -12,6 +12,14 @@ def lineno_gen():
         lineno += 1
 
 
+def lineno_sort_key(entry):
+    # Sort in ascending order, with unspecified entries at the end
+    if 'lineno' in entry:
+        return 0, entry['lineno']
+    else:
+        return 1, 0
+
+
 # Part 1: top-level interface.
 
 def getcaps():
@@ -97,7 +105,7 @@ def readmailcapfile(fp, lineno):
             caps[key].append(fields)
         else:
             caps[key] = [fields]
-    return caps
+    return caps, lineno
 
 def parseline(line):
     """Parse one entry in a mailcap file and return a dictionary.
@@ -176,7 +184,7 @@ def lookup(caps, MIMEtype, key=None):
         entries = entries + caps[MIMEtype]
     if key is not None:
         entries = [e for e in entries if key in e]
-    entries = sorted(entries, key=lambda x: x.get('lineno'))
+    entries = sorted(entries, key=lineno_sort_key)
     return entries
 
 def subst(field, MIMEtype, filename, plist=[]):

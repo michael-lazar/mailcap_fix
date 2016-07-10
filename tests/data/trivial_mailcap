@@ -1,0 +1,3 @@
+image/*; feh %s
+image/jpeg; eog %s
+music/mp3; play %s
