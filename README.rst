@@ -103,11 +103,11 @@ Timing
 
 TODO
 
-.. |python| image:: https://img.shields.io/badge/python-2.7%2C%203.5-blue.svg
+.. |python| image:: https://img.shields.io/badge/python-2.6%2C%202.7%2C%203-blue.svg
     :target: https://pypi.python.org/pypi/mailcap_fix/
     :alt: Supported Python versions
 
-.. |pypi| image:: https://img.shields.io/pypi/v/rtv.svg?label=version
+.. |pypi| image:: https://img.shields.io/pypi/v/mailcap_fix.svg?label=version
     :target: https://pypi.python.org/pypi/mailcap_fix/
     :alt: Latest Version
 
