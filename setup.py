@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name='mailcap_fix',
+    name='mailcap-fix',
     version='0.1.0',
     description='A patched mailcap module that conforms to RFC 1524',
     long_description=open('README.rst').read(),

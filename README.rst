@@ -18,7 +18,7 @@ Installation
 
 .. code-block:: bash
 
-    $ pip install mailcap_fix
+    $ pip install mailcap-fix
     
 Example
 -------
