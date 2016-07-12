@@ -5,13 +5,6 @@ import os
 __all__ = ["getcaps","findmatch"]
 
 
-def lineno_gen():
-    lineno = 0
-    while True:
-        yield lineno
-        lineno += 1
-
-
 def lineno_sort_key(entry):
     # Sort in ascending order, with unspecified entries at the end
     if 'lineno' in entry:
@@ -33,8 +26,7 @@ def getcaps():
 
     """
     caps = {}
-
-    lineno = lineno_gen()
+    lineno = 0
     for mailcap in listmailcapfiles():
         try:
             fp = open(mailcap, 'r')
@@ -94,7 +86,8 @@ def readmailcapfile(fp, lineno):
         key, fields = parseline(line)
         if not (key and fields):
             continue
-        fields['lineno'] = next(lineno)
+        fields['lineno'] = lineno
+        lineno += 1
         # Normalize the key
         types = key.split('/')
         for j in range(len(types)):
