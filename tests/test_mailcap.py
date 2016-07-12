@@ -215,8 +215,7 @@ class FindmatchTest(unittest.TestCase):
         ]
         self._run_cases(cases)
 
-    # skipUnless is not a valid function in python 2.6
-    # @unittest.skipUnless(os.name == "posix", "Requires 'test' command on system")
+    @unittest.skipUnless(os.name == "posix", "Requires 'test' command on system")
     def test_test(self):
         # findmatch() will automatically check any "test" conditions and skip
         # the entry if the check fails.
