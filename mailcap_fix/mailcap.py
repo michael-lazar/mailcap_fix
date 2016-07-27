@@ -30,7 +30,7 @@ def getcaps():
     for mailcap in listmailcapfiles():
         try:
             fp = open(mailcap, 'r')
-        except OSError:
+        except (OSError, IOError):
             continue
         with fp:
             morecaps, lineno = readmailcapfile(fp, lineno)
