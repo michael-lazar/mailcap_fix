@@ -50,7 +50,7 @@ wildcard entries last.
 
 .. code-block:: python
 
-    >>> import mailcap_fix as mailcap
+    >>> from mailcap_fix import mailcap
     >>> d = mailcap.getcaps()
     >>> # Correctly returns the wildcard entry
     >>> mailcap.findmatch(d, 'image/jpeg', filename='test.jpg')
