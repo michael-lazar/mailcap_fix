@@ -1,5 +1,7 @@
+###############################################################################
 # This file was copied from cpython/Lib/tests/test_mailcap.py
-# and modified to work with mailcap_fix.
+# Some lines have been changed to work with mailcap_fix
+###############################################################################
 
 import os
 import copy
@@ -236,7 +238,3 @@ class FindmatchTest(unittest.TestCase):
     def _run_cases(self, cases):
         for c in cases:
             self.assertEqual(mailcap.findmatch(*c[0], **c[1]), c[2])
-
-
-if __name__ == '__main__':
-    unittest.main()

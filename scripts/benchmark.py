@@ -1,13 +1,15 @@
-import mailcap
 import time
 import os
+import sys
 
-from mailcap_fix import mailcap as mailcap_fix
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, ROOT)
 
+from mailcap_fix import mailcap_fix
+from mailcap_fix import mailcap_original
 
-PATH = os.path.join(os.path.dirname(__file__), 'data')
-TRIVIAL = os.path.join(PATH, 'trivial_mailcap')
-EXTENDED = os.path.join(PATH, 'extended_mailcap')
+MAILCAP_SHORT = os.path.join(ROOT, 'tests', 'data', 'mailcap_short.txt')
+MAILCAP_LONG = os.path.join(ROOT, 'tests', 'data', 'mailcap_long.txt')
 
 
 def timer(f, *args, **kwargs):
@@ -29,19 +31,19 @@ def lookup_all(lookup_func, d):
 
 if __name__ == '__main__':
 
-    for filename in (TRIVIAL, EXTENDED):
+    for filename in (MAILCAP_SHORT, MAILCAP_LONG):
         os.environ['MAILCAPS'] = filename
 
-        print('MAICAPS=%s, mailcap.getcaps()' % filename)
-        timer(mailcap.getcaps)
+        print('MAICAPS=%s, mailcap_original.getcaps()' % filename)
+        timer(mailcap_original.getcaps)
 
         print('MAICAPS=%s, mailcap_fix.getcaps()' % filename)
         timer(mailcap_fix.getcaps)
 
-        d = mailcap.getcaps()
-        print('MAICAPS=%s, mailcap.lookup(d, ...), %s entries' %
+        d = mailcap_original.getcaps()
+        print('MAICAPS=%s, mailcap_original.lookup(d, ...), %s entries' %
               (filename, len(d)))
-        timer(lookup_all, mailcap.lookup, d)
+        timer(lookup_all, mailcap_original.lookup, d)
 
         d_fix = mailcap_fix.getcaps()
         print('MAICAPS=%s, mailcap_fix.lookup(d_fix, ...), %s entries' %
