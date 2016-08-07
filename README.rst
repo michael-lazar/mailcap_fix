@@ -82,8 +82,8 @@ Benchmark
 ----------------------------------------------
 ..                   mailcap      mailcap_fix
 ==================== ============ ============
-trivial_mailcap_     0.081881  ms 0.084525 ms
-extended_mailcap_    17.746289 ms 18.407623 ms
+mailcap_short.txt_     0.081881  ms 0.084525 ms
+mailcap_long.txt_    17.746289 ms 18.407623 ms
 ==================== ============ ============
 
 ==================== =========== ===========
@@ -91,13 +91,13 @@ extended_mailcap_    17.746289 ms 18.407623 ms
 --------------------------------------------
 ..                   mailcap     mailcap_fix
 ==================== =========== ===========
-trivial_mailcap_     0.000996 ms 0.003144 ms
-extended_mailcap_    0.000798 ms 0.002731 ms
+mailcap_short.txt__     0.000996 ms 0.003144 ms
+mailcap_long.txt_    0.000798 ms 0.002731 ms
 ==================== =========== ===========
 
-.. _trivial_mailcap: https://github.com/michael-lazar/mailcap_fix/blob/master/tests/data/trivial_mailcap
+.. _mailcap_short.txt: https://github.com/michael-lazar/mailcap_fix/blob/master/tests/data/mailcap_short.txt
 
-.. _extended_mailcap: https://github.com/michael-lazar/mailcap_fix/blob/master/tests/data/extended_mailcap
+.. _mailcap_long.txt: https://github.com/michael-lazar/mailcap_fix/blob/master/tests/data/mailcap_long.txt
 
 .. |python| image:: https://img.shields.io/badge/python-2.6+%2C%203.0+%2C%20pypy-blue.svg
     :target: https://pypi.python.org/pypi/mailcap_fix/
