@@ -1,4 +1,5 @@
 import setuptools
+from io import open
 
 setuptools.setup(
     name='mailcap-fix',
