@@ -62,6 +62,12 @@ MAILCAPDICT = {
         [{'view': 'display %s', 'lineno': 8}]
 }
 
+# For backwards compatibility, readmailcapfile() and lookup() still support
+# the old version of mailcapdict without line numbers.
+MAILCAPDICT_DEPRECATED = copy.deepcopy(MAILCAPDICT)
+for entry_list in MAILCAPDICT_DEPRECATED.values():
+    for entry in entry_list:
+        entry.pop('lineno')
 
 class HelperFunctionTest(unittest.TestCase):
 
@@ -87,9 +93,9 @@ class HelperFunctionTest(unittest.TestCase):
     def test_readmailcapfile(self):
         # Test readmailcapfile() using test file. It should match MAILCAPDICT.
         with open(MAILCAPFILE, 'r') as mcf:
-            d, lineno = mailcap.readmailcapfile(mcf)
-        self.assertDictEqual(d, MAILCAPDICT)
-        self.assertEqual(lineno, 14)
+            with self.assertWarns(DeprecationWarning):
+                d = mailcap.readmailcapfile(mcf)
+        self.assertDictEqual(d, MAILCAPDICT_DEPRECATED)
 
     def test_lookup(self):
 
