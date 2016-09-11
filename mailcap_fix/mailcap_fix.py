@@ -1,6 +1,7 @@
 """Mailcap file handling.  See RFC 1524."""
 
 import os
+import warnings
 
 __all__ = ["getcaps","findmatch"]
 
@@ -59,8 +60,14 @@ def listmailcapfiles():
 
 
 # Part 2: the parser.
+def readmailcapfile(fp):
+    """Read a mailcap file and return a dictionary keyed by MIME type."""
+    warnings.warn('readmailcapfile is deprecated, use getcaps instead',
+                  DeprecationWarning, 2)
+    caps, _ = _readmailcapfile(fp, None)
+    return caps
 
-def readmailcapfile(fp, lineno):
+def _readmailcapfile(fp, lineno):
     """Read a mailcap file and return a dictionary keyed by MIME type.
 
     Each MIME type is mapped to an entry consisting of a list of
@@ -86,8 +93,9 @@ def readmailcapfile(fp, lineno):
         key, fields = parseline(line)
         if not (key and fields):
             continue
-        fields['lineno'] = lineno
-        lineno += 1
+        if lineno is not None:
+            fields['lineno'] = lineno
+            lineno += 1
         # Normalize the key
         types = key.split('/')
         for j in range(len(types)):
