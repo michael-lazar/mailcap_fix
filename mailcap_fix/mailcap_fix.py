@@ -34,7 +34,7 @@ def getcaps():
         except (OSError, IOError):
             continue
         with fp:
-            morecaps, lineno = readmailcapfile(fp, lineno)
+            morecaps, lineno = _readmailcapfile(fp, lineno)
         for key, value in morecaps.items():
             if not key in caps:
                 caps[key] = value
