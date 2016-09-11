@@ -87,7 +87,7 @@ class HelperFunctionTest(unittest.TestCase):
     def test_readmailcapfile(self):
         # Test readmailcapfile() using test file. It should match MAILCAPDICT.
         with open(MAILCAPFILE, 'r') as mcf:
-            d, lineno = mailcap.readmailcapfile(mcf, 0)
+            d, lineno = mailcap.readmailcapfile(mcf)
         self.assertDictEqual(d, MAILCAPDICT)
         self.assertEqual(lineno, 14)
 
