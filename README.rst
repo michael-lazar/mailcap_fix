@@ -64,7 +64,7 @@ while preserving as much backwards compatibility as possible and without adding 
 
 *mailcap_fix* adds a new field ``lineno`` to each entry in the mailcap dict.
 This line number is then used to sort entries in descending order when searching for a match.
-For backwards compatability, if ``lino`` is not present entries will simply not be sorted.
+For backwards compatability, if ``lineno`` is not present entries will simply not be sorted.
 Because RFC 1524 defines a whitelist of valid mailcap fieldnames, the addition of ``lineno``
 should not conflict with any other mailcap fields.
 
