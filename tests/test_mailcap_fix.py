@@ -4,7 +4,7 @@ import random
 import os
 
 from mailcap_fix import mailcap as mailcap_alias
-from mailcap_fix import mailcap_fix, mailcap_original
+from mailcap_fix import mailcap_fix
 
 
 TEST_DIR = os.path.dirname(__file__)

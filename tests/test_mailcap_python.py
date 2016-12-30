@@ -1,11 +1,10 @@
 ###############################################################################
 # This file was copied from cpython/Lib/tests/test_mailcap.py
-# Some lines have been changed to work with mailcap_fix
+# Some lines have been modified to work without the python test runner
 ###############################################################################
 
 import os
 import copy
-import shutil
 import unittest
 
 from mailcap_fix import mailcap
