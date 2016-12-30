@@ -4,6 +4,11 @@ Mailcap Fix
 
 |pypi| |python| |travis-ci|
 
+**Note**
+
+| A fix has now been merged into `Python 3.6.0 <https://docs.python.org/3.6/whatsnew/changelog.html>`_.
+| This package remains as a backport for previous versions.
+
 Summary
 -------
 
@@ -78,7 +83,7 @@ Benchmark
 |
 
 ==================== ============ ============
-               mailcap.get_caps()
+        mailcap.get_caps() - per file
 ----------------------------------------------
 ..                   mailcap      mailcap_fix
 ==================== ============ ============
@@ -87,7 +92,7 @@ mailcap_long.txt_    17.746289 ms 18.407623 ms
 ==================== ============ ============
 
 ==================== =========== ===========
-               mailcap.lookup()
+    mailcap.lookup() - avg function call
 --------------------------------------------
 ..                   mailcap     mailcap_fix
 ==================== =========== ===========
