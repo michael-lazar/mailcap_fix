@@ -1,9 +1,9 @@
 import unittest
-import mailcap
 import random
 import os
 
-from mailcap_fix import mailcap as mailcap_alias
+from mailcap_fix import mailcap
+from mailcap_fix import mailcap_original
 from mailcap_fix import mailcap_fix
 
 
@@ -28,7 +28,7 @@ class TestMailcapFix(unittest.TestCase):
         self.assertEqual(entries, sorted(entries, key=lambda x: 1))
 
     def test_import_alias(self):
-        assert mailcap_fix == mailcap_alias
+        assert mailcap == mailcap_fix
 
     def test_mailcap_short(self):
         os.environ['MAILCAPS'] = MAILCAP_SHORT
@@ -59,7 +59,7 @@ class TestMailcapFix(unittest.TestCase):
     def test_backwards_compatible(self):
         os.environ['MAILCAPS'] = MAILCAP_SHORT
 
-        d = mailcap.getcaps()
+        d = mailcap_original.getcaps()
         d_lineno = mailcap_fix.getcaps()
 
         # Note: Both of these cases should not break, but they will exhibit the
@@ -70,5 +70,6 @@ class TestMailcapFix(unittest.TestCase):
         self.assertEqual(command, 'eog a')
 
         # Call the original findmatch() using a dict with the added ``lineno``
-        command, entry = mailcap.findmatch(d_lineno, 'image/jpeg', filename='a')
+        command, entry = mailcap_original.findmatch(d_lineno, 'image/jpeg', 
+                                                    filename='a')
         self.assertEqual(command, 'eog a')
