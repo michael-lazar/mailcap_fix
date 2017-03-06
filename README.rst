@@ -5,7 +5,7 @@ Mailcap Fix
 |pypi| |python| |travis-ci|
 
 | **Note**
-| A fix has now been merged into `Python 3.6.0 <https://docs.python.org/3.6/whatsnew/changelog.html>`_. This package now acts as a backport for all older versions of python.
+| An official `fix <https://docs.python.org/3.6/whatsnew/changelog.html>`_ for this issue was released in Python 3.6.0. This package now acts as a backport for all older versions of python.
 
 Summary
 -------
